@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CRM — Book Writing</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="crm-body">
+
+<!-- ============ LOGIN SCREEN ============ -->
+<div class="crm-login-wrap" id="login-screen">
+  <div class="crm-login-card">
+    <h1>Book Writing CRM</h1>
+    <p>Sign in with your Supabase admin account to view submissions.</p>
+    <form id="login-form">
+      <div class="field">
+        <label for="login-email">Email</label>
+        <input id="login-email" type="email" placeholder="you@bookwriting.example" required>
+      </div>
+      <div class="field">
+        <label for="login-password">Password</label>
+        <input id="login-password" type="password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn">Sign In</button>
+      <p class="crm-error" id="login-error">Incorrect email or password. Try again.</p>
+    </form>
+  </div>
+</div>
+
+<!-- ============ DASHBOARD (hidden until logged in) ============ -->
+<div id="dashboard" style="display:none;">
+  <div class="crm-header">
+    <div class="logo">Book Writing<span>.</span> CRM</div>
+    <button class="crm-logout" id="logout-btn">Sign Out</button>
+  </div>
+
+  <main class="crm-main">
+    <div class="crm-stats">
+      <div class="crm-stat-card"><div class="n" id="stat-total">0</div><div class="l">Total Submissions</div></div>
+      <div class="crm-stat-card"><div class="n" id="stat-new">0</div><div class="l">New</div></div>
+      <div class="crm-stat-card"><div class="n" id="stat-contacted">0</div><div class="l">Contacted</div></div>
+      <div class="crm-stat-card"><div class="n" id="stat-closed">0</div><div class="l">Closed</div></div>
+    </div>
+
+    <div class="crm-toolbar">
+      <input type="search" id="search-input" placeholder="Search by name, email, or message…">
+      <select id="status-filter">
+        <option value="all">All Statuses</option>
+        <option value="new">New</option>
+        <option value="contacted">Contacted</option>
+        <option value="closed">Closed</option>
+      </select>
+      <button class="crm-refresh" id="refresh-btn">Refresh</button>
+    </div>
+
+    <div class="crm-table-wrap">
+      <table class="crm-table" id="crm-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Email / Phone</th>
+            <th>Subject / Service</th>
+            <th>Message</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="crm-table-body"></tbody>
+      </table>
+      <div class="crm-empty" id="crm-empty" style="display:none;">No submissions match your filters yet.</div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="crm.js"></script>
+</body>
+</html>
